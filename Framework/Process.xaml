@@ -1,0 +1,258 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Process" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property sap2010:Annotation.AnnotationText="Transaction item to be processed." Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="in_Config" Type="InArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property Name="In_SaidaTabelaRelatorio" Type="InArgument(sd:DataTable)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1788,2494</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ProcessTransaction_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="74">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Windows.Forms</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Text.RegularExpressions</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>System.Xml.Serialization</x:String>
+      <x:String>UiPath.Excel</x:String>
+      <x:String>UiPath.Excel.Activities</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualStudio.Services.Common</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.Windows.Forms</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap2010:Annotation.AnnotationText="Invoke major steps of the business process, which are usually implemented by multiple subworkflows.&#xA;&#xA;If a BusinessRuleException is thrown, the transaction is skipped. &#xA;If another kind of exception occurs, the current transaction can be retried. " DisplayName="Process" sap:VirtualizedContainerService.HintSize="644,2429" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Cod_Munip" />
+      <Variable x:TypeArguments="x:String" Name="Gentilico" />
+      <Variable x:TypeArguments="x:String" Name="Prefeito" />
+      <Variable x:TypeArguments="x:String" Name="cidades" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message Process Start" sap:VirtualizedContainerService.HintSize="602,118" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Started Process&quot;]" />
+    <uix:NApplicationCard WebDriverMode="{x:Null}" AttachMode="ByInstance" CloseMode="Never" DisplayName="Use Browser Chrome: https://cidades.ibge.gov.br" sap:VirtualizedContainerService.HintSize="602,2072" sap2010:WorkflowViewState.IdRef="NApplicationCard_1" InteractionMode="DebuggerApi" OpenMode="IfNotOpen" ScopeGuid="7a7f32fa-7a84-459b-b0bf-b2e3ba6a07b1" Version="V2" WindowResize="Maximize">
+      <uix:NApplicationCard.Body>
+        <ActivityAction x:TypeArguments="x:Object">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+          </ActivityAction.Argument>
+          <Sequence DisplayName="Fazer" sap:VirtualizedContainerService.HintSize="568,1852" sap2010:WorkflowViewState.IdRef="Sequence_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <Assign sap2010:Annotation.AnnotationText="Tratamento /MG" sap:VirtualizedContainerService.HintSize="526,94" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[cidades]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[in_TransactionItem.SpecificContent("Cidades").tostring.Replace("/MG","")]</InArgument>
+              </Assign.Value>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </Assign>
+            <uix:NTypeInto ActivateBefore="True" ClickBeforeMode="Single" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="526,224" sap2010:WorkflowViewState.IdRef="NTypeInto_1" ScopeIdentifier="7a7f32fa-7a84-459b-b0bf-b2e3ba6a07b1" Text="[cidades]" Version="V1">
+              <uix:NTypeInto.Target>
+                <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/" DesignTimeRectangle="789, 176, 1086, 36" ElementType="InputBox" FriendlyName="'INPUT'" FullSelectorArgument="&lt;webctrl tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='busca__input ng-untouched ng-pristine ng-valid' aaname='' /&gt;" Guid="a6a9dd0c-5d26-4fb7-9b9b-1d0a72d51c5f" ImageBase64="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" InformativeScreenshot="f3e46d7a4098dfcf82f7e95a6cacffba.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive" />
+              </uix:NTypeInto.Target>
+            </uix:NTypeInto>
+            <uix:NClick sap2010:Annotation.AnnotationText="Seletor dinamico com os dados da cidade&#xA;" ClickType="Single" DisplayName="Click 'Abadia dos Dourados'" sap:VirtualizedContainerService.HintSize="526,210" sap2010:WorkflowViewState.IdRef="NClick_1" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="7a7f32fa-7a84-459b-b0bf-b2e3ba6a07b1" Version="V1">
+              <uix:NClick.Target>
+                <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/" DesignTimeRectangle="808, 238, 220, 26" ElementType="Text" FriendlyName="'Abadia dos Dourados'" FullSelectorArgument="[String.Format(&quot;&lt;webctrl aaname='{0}' tag='SPAN' /&gt;&quot;, cidades)]" FuzzySelectorArgument="[&quot;&lt;webctrl aaname='&quot;+cidades+&quot;' tag='SPAN' type='' class='busca__auto-completar__resultado__item__nome' check:innerText='&quot;+cidades+&quot;' /&gt;&quot;]" Guid="c0c15e76-8a7f-4a0a-b462-0372806eca8e" ImageBase64="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" InformativeScreenshot="8a442cb478e51161838b3d57a7f4c8a0.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br' /&gt;" SearchSteps="FuzzySelector, Image" Visibility="Interactive">
+                  <uix:TargetAnchorable.Anchors>
+                    <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                      <uix:Target DesignTimeRectangle="1101, 243, 36, 24" ElementType="Text" FriendlyName="'MG'" FullSelectorArgument="&lt;webctrl aaname='MG' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname='MG' tag='SPAN' type='' class='busca__sigla' check:innerText='MG' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAACgAAAAcCAYAAAATFf3WAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHBSURBVFhH7ZYxkoMwDEX3ThR0DAVDkRluGC5CTkGOAFeg1/o7Eci2sD3ZhaVYT34BNtLjyzL5KoqCrqx/wJ8qC7AsS6rrmtq2pdvtRl3XfSw8jziIh7haPqkoIAI0TaMm+i0hfgx0F7CqKjXgUUI+jUMFhP1akKOFvD5LAHi2c758Jx1A7AXtobMl96QDeHRD5AocAWDKvf65ENFEgzIXmx9mc9sZC413d40mdnEFTDWGBVgW8xup9+cf0zu5BBzMlRnzoK6dHuKeIm6YFRCHp7aQ9QIcaZxDB+DSNCPxBmid8+HesrF25ljgcQBTXwgG7I0Dy7MXc3DKgFlnGBD38kq5J/A4gNoiqRUQyWWZAQY3JOB9NHiy3J/pQ0CUb3PHlhf7KQVo5+VIv4ADmF1iXLNrXF6+tyZNlNhZqysocW6TvEor9h1vdi9prElyAIMmyTtmtr3H59t6XARJ8RJm+JC2/BhxwOCYyTqo/eaQSXZc4ReRI3UGQsFBDV36UwelXDxL7F4ACF367xYr1TBHiRtDSgWEznbSd461CwhhLxzdOIgv95yvKCALAWA/Ds/UFyclPI84iBcDY2UB/p0K+gZQ+qRrLLsHKQAAAABJRU5ErkJggg==" SearchSteps="FuzzySelector, Image" />
+                    </scg:List>
+                  </uix:TargetAnchorable.Anchors>
+                </uix:TargetAnchorable>
+              </uix:NClick.Target>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </uix:NClick>
+            <Sequence DisplayName="Captura Dados" sap:VirtualizedContainerService.HintSize="526,954" sap2010:WorkflowViewState.IdRef="Sequence_3">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NGetText DisplayName="Get Text 'Código do Município'" sap:VirtualizedContainerService.HintSize="484,160" sap2010:WorkflowViewState.IdRef="NGetText_1" ScopeIdentifier="7a7f32fa-7a84-459b-b0bf-b2e3ba6a07b1" Version="V1">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/tombos/panorama" DesignTimeRectangle="329, 289, 198, 21" ElementType="Text" FriendlyName="'3169208'" FullSelectorArgument="&lt;webctrl parentid='dados' tag='P' /&gt;" FuzzySelectorArgument="&lt;webctrl parentid='dados' tag='P' type='' class='topo__valor' /&gt;" Guid="25d64924-7e0f-493b-8b3d-f57437b88a11" InformativeScreenshot="9ae0382720e868ca63cdede3f8ee87ff.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br/brasil/mg/tombos/panorama' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="329, 268, 198, 21" ElementType="Text" FriendlyName="'Código do Município'" FullSelectorArgument="&lt;webctrl tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H3' type='' class='topo__titulo desktop' aaname='                     Código do Município                 ' check:innerText='Código do Município' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAMoAAAAZCAYAAABwz7EpAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAPPSURBVHhe7ZlNUuQwDIXnHnO1vgcXYMEdpqtY9TprqpesWHd1FSfoawQ78o/0LCciHZhQaPHVkMSW5Sc9JzB/brfb6DjOPG4UxzHgRnEcA24UxzHgRnEcA24UxzHgRnEcA12jXIbT+Pfhn+DxVR+bKXOOb+pzydv4KMbS9WF4Z2O+G8xpPVYtaNxpfL7qz+/idVgV+3N1jLyPz0/b6LZXFKOkZnkYxhd+fxJ9Tgyat2SmynZNuR1bG+U0HkID9cxfGvKrjLKKz9bxdwBGSSfD03m8iPuJZBZVxOu7PqfL7zDK8xA0U/WMWp/Gx+MXvlHW8Ok6/g6kUeaMMPE2voRnlyAmv19PxoTWaNfzeGBjDsMZmpKaVJ6+qXEzYezLMfyLjZffdpme0ZHFnAjT/oBilGvcg2KEuHaIU8el++rnEh5g9VNH5gbz1FigKXw5oL4UP4wBjWWPdD691tZlhwijNEUzMAkr5qRCcFGSYNUESdg4rogLRslNzMSntWTs3Ci1cDk2fDoippyM+1OoWlJc/PyKz2POjeZqc6fcypo11zZ/tm+M1dW0ztGNosVVNGdxV9dlpwijoGiLJOHl6RIQQmKRM6nhOkbRc8EmBXNlUl7N/YIxJ9P+dLgBpp/FWnF92ttdRsH8cS5cowkI2nPei24UzAfHpXw6tSws1mW/3GcUtagRLlRHtFlx8RnMyQXqNXJ3fsaYk2l/+IwQDTblyeLEuGmNu4yC+8O54npJE0I3StsTMm+Ivbou++WuT6/+eNZIM6fIVJQiGm8++lkTVBRyaoQVBTHmZNqfuF/RGimPj2vknJs17jYK00PE6mvKUY3CrgtzJlxblx0jf5nvngQZKJha1Ejb9G1ToWh8XE9QWH/1yWXMybQ/fEagAWrDxbn1hP4RRvE3ChilKQiQClEapHcyi4L1YmLhZPNNBTP+jtIIP/PGIIw5mfan0xhgihWu45+LWb42o+C+Ow2HeUEsNAEhY+lGwXxwHOazti77BYwSSZvEJk1FQKGpobmQWNSAIhDNC4C4ZUyaw8Vu5+RC8qZNRVNOQYEpJ+P+FNoGy3lJg7Xj2iYreXUbM7FgFE1TXH9ai+0t66vdazTfoi47RTEKUYrD4AXmFDET6omRi5Q5nkFcMAq7V+ek/0fpNAgfJ573WMyJMO0PoDncAFlT2SjaOMwrricbeKVRJkBTyEc3yhDehFwDjDmfT8Falx3SNco+oYJYGtXZhmyUn/gW2JLdGsV8+jpfihuF2PEbJX/Tcrxg340bhfhhn16O839woziOATeK4yxyGz8AhtfIfBAQ9wEAAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetText.Target>
+                <uix:NGetText.Text>
+                  <OutArgument x:TypeArguments="x:String">[Cod_Munip]</OutArgument>
+                </uix:NGetText.Text>
+              </uix:NGetText>
+              <If Condition="[Convert.ToInt32(Cod_Munip) &gt; 20000]" sap:VirtualizedContainerService.HintSize="484,260" sap2010:WorkflowViewState.IdRef="If_3">
+                <If.Then>
+                  <Throw Exception="[New BusinessRuleException(&quot;Codigo maior que o esperado!&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_3" />
+                </If.Then>
+                <If.Else>
+                  <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </Sequence>
+                </If.Else>
+              </If>
+              <uix:NGetText DisplayName="Get Text 'Gentílico'" sap:VirtualizedContainerService.HintSize="484,160" sap2010:WorkflowViewState.IdRef="NGetText_2" ScopeIdentifier="7a7f32fa-7a84-459b-b0bf-b2e3ba6a07b1" Version="V1">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/tombos/panorama" DesignTimeRectangle="539, 289, 165, 21" ElementType="Text" FriendlyName="'tombense'" FullSelectorArgument="&lt;webctrl idx='2' parentid='dados' tag='P' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' parentid='dados' tag='P' class='topo__valor' /&gt;" Guid="e39b2bb3-1319-4c79-b62c-c587a4e55f15" InformativeScreenshot="45086f3f55ec2945c0c62f8a2e008fec.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br/brasil/mg/tombos/panorama' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="539, 268, 165, 21" ElementType="Text" FriendlyName="'Gentílico'" FullSelectorArgument="&lt;webctrl idx='3' tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' tag='H3' class='topo__titulo' aaname='                     Gentílico                 ' check:innerText='Gentílico' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAKkAAAAZCAYAAABKHw5aAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAICSURBVHhe7Zc9csIwEEZzj1yNe3ABCu6AZ6ioXTOUVNQMM5zA11Bka4V2pRUY44RN8hWvsPVjafZpV/7ous4BYBlICswDSYF5ICkwDyQF5oGkwDyQFJinLumxdZ/LTUbr9lrfGdk3G7c65u9PbjV8f+e2l86d2x1by9Vt176tOWVjwF9BkVQKwdt6gXpZF+1VvJ+Ny8Et/Py5pIOU64M78+cfODDABoWkQcS6AI/aX6Im6UUeCkj6v5CSkiR3M2Xfp/FZTWRZKrlDBg5I0VJJDoLFfixb59eLmDkVcceUe/kdbU+xYkTKygFsICQNgX02WBRsVo6jcEmsJHGSJb5jGVHLpBMkDdme7SM/fPTMx0Sp5eECFhCSTinlNbHlXCQSF7lnkLmU6SVJtTniGPr+sLZ8LbU1grczStLwXhKy0p3ACgHLbFf28cwhaT5nQWUtHjkvsMKEch/Ku5CUxC0ZIykTcAZJH++BrieQ9Nfw/I+TJqkScIklSetrhqQ2kZJ6Ht9LuaT1wN4T6cY3SKrO0cOuAfoeaR7cSc1RSHoLlhLoIEffxjOV8ndPoqSMPFLS7AAMPCupJ0iorDETmY+JeyvkBm9HkZSIgRTUymgSOyKDPVZS/pNGEk6QNPWJc2lXGBL3Rp5ZgRXqkgJgBEgKzANJgXkgKTAPJAXmgaTAOJ37AubKmGrMql7SAAAAAElFTkSuQmCC" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetText.Target>
+                <uix:NGetText.Text>
+                  <OutArgument x:TypeArguments="x:String">[Gentilico]</OutArgument>
+                </uix:NGetText.Text>
+              </uix:NGetText>
+              <uix:NGetText DisplayName="Get Text 'Prefeito'" sap:VirtualizedContainerService.HintSize="484,160" sap2010:WorkflowViewState.IdRef="NGetText_3" ScopeIdentifier="7a7f32fa-7a84-459b-b0bf-b2e3ba6a07b1" Version="V1">
+                <uix:NGetText.Target>
+                  <uix:TargetAnchorable BrowserURL="https://cidades.ibge.gov.br/brasil/mg/tombos/panorama" DesignTimeRectangle="329, 367, 542, 21" ElementType="Text" FriendlyName="'TIAGO PEDROSA'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app&amp;gt;shell&amp;gt;div&amp;gt;div&amp;gt;panorama-shell&amp;gt;div&amp;gt;section&amp;gt;panorama-resumo&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;p' idx='3' parentid='dados' tag='P' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='topo__valor' parentid='dados' tag='P' /&gt;" Guid="ffb90906-b57c-45ed-a855-6905890725e2" InformativeScreenshot="ddf16bdae596227469a90954eefe12eb.png" ScopeSelectorArgument="&lt;html app='chrome.exe' title='https://cidades.ibge.gov.br/brasil/mg/tombos/panorama' /&gt;" SearchSteps="FuzzySelector" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target DesignTimeRectangle="329, 346, 542, 21" ElementType="Text" FriendlyName="'Prefeito'" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app&amp;gt;shell&amp;gt;div&amp;gt;div&amp;gt;panorama-shell&amp;gt;div&amp;gt;section&amp;gt;panorama-resumo&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;h3' idx='4' tag='H3' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='topo__titulo' tag='H3' aaname='                     Prefeito                 ' check:innerText='Prefeito' /&gt;" ImageBase64="iVBORw0KGgoAAAANSUhEUgAAAiIAAAAZCAYAAAAMlkVtAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAH+SURBVHhe7dy9TcNAGIBh9mC17MECFOwAEhW1a5SSijpCYoKscdiJE//cOWcngSPSUzxC+OezqfLqcuJuu90GAIAShAgAUIwQAQCKESIAQDFCBAAoRogAAMUIEQCgmGGIfFTh/uF50uNH79qLfYfXp+WzN9VbfX0V3g/HvtZh9bQOm941AMBtSIZIKgr2AfAcVtV3dO4su2e9hdevxLkF3l/qkBEiAHCTZofIcQXjSh/60crGmYQIANyuBSHSfugf4+EzPDbXVuuwqn82992/fLbXDr92Gc6Mz/VD4rDycnSc2T/fvMOpZ+TnAADlXbAisg+R+OuV9nh/lSIxN7Uisg+d/rx2Vi8ixvelVkQm51g5AYB/ZfEeke5cHAnddfHej+FqSiJEmk2n9bxoD8ronbIh0s6J/obMag8A8PeSIZKWXvkYhsOJfSS72d2McVBMBcz4OdkQGT2nk3pfAKCkRXtEhk6ESH08LRciqXv25obI3KABAMr7nRCZsTE0HSLd71NyIWJFBABux5VDZDoosuExtbdjdDwbIjP3mgAA5V09RA7Hc3GQCpZdVAxWM+I9J9mgqcVzEu8EABT3CyHSiPeKjGemAqI73rt38v+ItMfayGmujUOnm5N+TwCgpGGIAAD8ISECABQjRACAYoQIAFCMEAEAihEiAEAh2/ADNFWmfpCUfw0AAAAASUVORK5CYII=" SearchSteps="FuzzySelector, Image" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NGetText.Target>
+                <uix:NGetText.Text>
+                  <OutArgument x:TypeArguments="x:String">[Prefeito]</OutArgument>
+                </uix:NGetText.Text>
+              </uix:NGetText>
+            </Sequence>
+            <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke InsertRelatorio workflow" sap:VirtualizedContainerService.HintSize="376,116" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="InsertRelatorio.xaml">
+              <ui:InvokeWorkflowFile.Arguments>
+                <InArgument x:TypeArguments="sd:DataTable" x:Key="In_SaidaTabelaRelatorio">
+                  <mva:VisualBasicValue x:TypeArguments="sd:DataTable" ExpressionText="In_SaidaTabelaRelatorio" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Cidade">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="cidades" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Gentilico">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Gentilico" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Prefeito">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Prefeito" />
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Status">
+                  <Literal x:TypeArguments="x:String">Sucesso</Literal>
+                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Codigo">
+                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Cod_Munip" />
+                </InArgument>
+              </ui:InvokeWorkflowFile.Arguments>
+            </ui:InvokeWorkflowFile>
+          </Sequence>
+        </ActivityAction>
+      </uix:NApplicationCard.Body>
+      <uix:NApplicationCard.TargetApp>
+        <uix:TargetApp Area="-1928, -8, 1936, 1048" BrowserType="Chrome" IconBase64="iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAvUSURBVGhD7ZgLVNRVGsB9AAEijKQhIjCAgDAzPAZRnsOAqJApWO3qFoplWmlFpe222yZl68nMxBdoPvCRum2PpdV2q6My+Nr2WB3dPWd7bCaY+IpklChUZu+333cf8x9mJk1rt91z9jvnd77vfvfO3N/9z/8/g/b6MaO3X5DeNyy5KiCx1BZoKDvcP/NuIKimHs3RGrn8vydIyj8mf6MSvhq09t96kP4+fXU5umDrMwmRNZtN8Q3v56Q0H7Wk2b8YnQlnCzMY1XsyDYcbzIm2qcnmHbqMik5volciKP1Ou48uulxu+cNEtq6/laQ+zReySvhs0QjgWDPYGauZj88UjoDavDFe5a4Fn4Hx0+X21x8kvmdE8mEuKYWdok7hDM5ZFCdq84q9Cl0P1/1JDPX307+elmDrKarJOrFmwGmrGU4XpDPiPUs2DMms9CqjCBpxl9faG3Q7XfMzMTMirOrj3FS7Ej5dYGYip4uM0iTO5UlcHQDz1OxyryIKEg4ZNQMCM6ZzqL7aIfDB3iTVrh7zosOrhYzLlaUsOWXRxqcKBHhAzqH8UV4FFCQajLm34Q4YmHsvpw/WwSOv/kl8p09hXvTgai7nIsmRgkI4XWAR+WR+GuNjzAtzxnrdnAhCQkbO4MI/m7cSjp9q40x+dAX0xR7N0RpvryV8wwwPS03vMTdqcDVJqCvrIU2iKE3CJ/NTRU2H4DmN14Ujf8K8ba4INE+HG3NmwZkvz4OKU2fbITTrHn47eXuNAn/smqSqZ9wz5KYqEiUJfkWlnCBNSiJ5qUzJyrU9GD7yTq+bK+gAA/EAbe0dUh/gi3MX8FAz+Zy31yjoF1vq9gz6tvkox2QncVdpJdoq5Shz8BCqVuLY42NvGxN0fxOh2TOhV+JkGH/fYvjrJ8fhyMctUHrvIt6jObXO23sQUrlnvGNOOMyl+NUVwkpO1a25KTQvRPPE+ITsncjBmmfTFW8folfSFIgufhAmzlkCizfsgOfW7+B11OgH+RytCcq8hgOEWqKmvz05S0jKq8izkpOo2tnLTYGTJXlwfvli+GZfI3SfOslvh+QJj3lsSg8mfcv4mirgwYWb+C3jHmfxmZi9oB7X3Cm+kdzegwg0lB+R2loYl49trlxSKsTwCrpKC1EihfM5zn+ekwKtJblwYcNq+GeHdh+rKJm1yGNjwj+9EsIt98PFS918HWOMZwpVd128DIMt90EArvX2Hh4PsS4jvMy8fRIQdfdb+AGULBcmskXv82wjI07fXuK82hQdXQzePHIJlr7dBY+9/DUUPLzT6+Z0gKGFc+DYibPQfqETziH2DgHV1KO5oUUP8LXe3sPjazT2kayG9G3lzLxtEuTVT4SPitLwKktZyjkmJ8ezjOzUbT3lf/vuJSh69gJkPnUeMqsFqT//zOvm9GDSD1gkCtL97g2aU2vdX0/0+CHrG+CrS99aDoq0rWVs0UP57Hg2yhIozOG1gWclT1f93o2dMAKFvRFRXtdjY3U/kxhd3Suh5N2fAY8/JULM4eUojeIo/1IZP0TqSxPZoTFpKGtUh4CWUSRvhPPr67g8xaz6TsiYfx6x80zSqiZS5n0GIdmzewgoMfoUroTrWkXIiIqvPP6MiLjDuIzEU7fgITCnbJnAUrdMhIpFY7l0S5YBBEZonTROqgOsaewCM8q6Q+Ku44RZ+3pIfB/uqTDtkNpaxD2eayPhNDwAZdPmW1jq5olA7Lx1hJAfZYBmpG3BE1IfYPzSC5D+pF2Aok5Uz2Uu7q53vApdC5tr8uG1Z4c0SG0t4hcUHE7ZPAE0xCGI0atK2LHMJNY8Khkod31wiMs3fngZ0qQg5e/CMPwk3G+n70JE/jR4Y3UWdB+MZ0dfjTkmtbUw1JbaTZsmgGnTLZCC2bgJ5bGmnnHTeLZ8RhZrHokHQNT3/eI/fY1S7ZD6awQz1SQpahL23k+e+ymEl9V6FfXGzNnj4bMdRug+MIx1H4iHtrdi26W2FqaNKOsKybuMR60pZX/LScZPIpnLU8zY0AEpKE+QHKHGvOel5oeVddKjn0Lx3J38xy77jvlO4ayyn8K4KbeyFQsLUNwAjoPDUD6WOQ7EAQfHUlsLI0pqjAdjPYK1of5mloxQ/XhVLjuakej8yaza9pVT0OSWVe0+VrUa371e+/UmSUEMysYKWZ4lB2Ohez+hZ1Jbi6RVY+0GlE6uL2Ukb9hwM8pjpt6GUqbGu0pS8fu/lW/43B+/BuMT58D0BMo4cR8jJItZrTW6zC3C9+Bx8QQeQE/yKBuDktG87t4vxqpHue2tSLvU1iJ+sbU5yUWUZwn1iWSsJy8ohE7bLr5nwwcXuRQJiSwwSNznRK/n2j0fXuLvxc6/KwX14Nivp6tMY5mjmANr0Y+G9+rDPf8dMHSOuYEEk9eX4hXHLOuk9SVsOML760XPtr2Gb0q/wNnP2J3CTn6l1clXqMc8r/0rzPHJo0wIR6EoyVIWUK9731CcR/ZFwu4Vg2xSW4uwKUnLSJYkk9aRLMpjHr5uHFOZoH7h2nLWcamTb7zlYBeXcSLlvo0kVeO62j3f8PegcBzKRlEh6dgficIRQpjXQ8WY56HwwgMhy6S2FgEJoQXD15YAQcJJ6yhriL7Gqg+2yq0Bpq27gGJfcjmBe63Q5irxNSr+2bIE5TRBwRDWvRehvC8CHEj33nBel+X7l0ltLfoG+OgSaka3q0Mkrh3Lhq8dx2uRx0Hii2NZAkK9zI23QWvHGS5AtxIdYvgvv/QEhd17tJZew6PrBLQ30S1CckNQdAiKDuY1ZTXmmdfhoOvXWye1e0bk3Exb4ovjgEtipprLy1qhxkXbpzkPQbFy9zdQ9Fw7JKKkYjhebVVnPn0ONh3QbpvWjtPwZ1shSodLacpheOWJwdRzGYfhIQbD6wtD3pC6nhEYP8CauGYsxK8Zw7gs1kSCzNQn1JjWWLdWMBJxjV1/vwQL3+yEqWvxn4VbOnj9+/e7tKuOQQeveGWylHQnTNA0iDl4fZPs3QRleTd43j6uEfFIho0ElSSvV4/hxK8uZgmrVU/25fyK97ZItStHx8Wv+FpzfRk7vhvvdZJDUSFJ9UBeO0RfsHcQjgfB0ZdDPf8Gco8A/BTiUWhYXTGjHF8n5IfVjebjOMzOcV0xn1dzhVsr4BeNz8NfTh6BEy63FtW7jh2E3+yvA/OGcnpvmLfdzLqbbkRZKcnBMWcg1hqOvSJPHXdDpdS8ctCnIOSkYG0x31SNhbQY0xzPshZ9uUbOxdWOZq7vYV5TCC278IFsCiVhl+xS20KRAYzTFAq7a4I9v/u/LXxDA/QxSyztalOe3YhdVSSkake71GIct0r0VFbzcbWiV/NKMpciOQfPOhIleVFTbsIx7w2Atp0hdn1Yn2v773SdNbKKNiMhJUdj1XPNrgxzGytiVxZyecvaPCGGOLhkCMrrSJzjaFJ1sLP/0O1+VVLr2mLAzfrq2JVFKIDwTDJFEEMyOKbMa+yrWs0R9FoaU1a80hAH3Y0o1xgCDlsIry839kdZEg6WPRqHwOXGIDa/0q9a6lxfDCiJecpVIHZFIaLV+hVWTVCNXTKHzxXBlPpMIdcYjDlIZJTmta0/F6asxvMrfb+fvApdqb46BkUU+uVWxjNKxiyX/eVW57yzJ9EvL2BEyzv4gDYGoWA/zCRMOQgu7wmUfYLqfvDkNL+n5PY/TPQviKiKfDbXHo0iBEnyepmo8VAcrYfjZXgo2Z+7xUTiHjh6jAOhbUeg/YFJfa/vnr9a+Azw14fNSbWRWNQyCxel2pWoGgujOapxno9zarNYy9v4wO4JRAIYQhmFZeb4s91L/Wz6sN7X9m1zPdFvZFhlxJOjmqNrCoAgyciafEZZ9Th4AMprf4f/utrjj7fKDZgJfxRW2Q/FfW2WlD5W+fb/uQg0DiwfdLehIfKFfC5OWdQWiFpqQXkL5KzKIlkP2v7ga9+95EcSd48+/j46OoyuLLZm0P0m2+C55sORC3PsdIiXX41AWR/7P7b5NL/2tE/DC7P7LrOk9LbqAr/lT+L/x/9U9Or1Ly4sC7OUA6sGAAAAAElFTkSuQmCC" InformativeScreenshot="4476658f23971d1e0b6d15355170eee4.png" Selector="&lt;html app='chrome.exe' title='*cidades.ibge.gov.br*' /&gt;" Url="https://cidades.ibge.gov.br/" />
+      </uix:NApplicationCard.TargetApp>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </uix:NApplicationCard>
+  </Sequence>
+</Activity>
